@@ -54,34 +54,23 @@ start(plotting_timer)
 
 global flag
 flag = 1;
-
-
-
 global dphi
 global istunning
 global prev_error
 global sum_error
 
 prev_error = 0;
-ierror = 0;
+sum_error = 0;
 
 istunning = false;
 dphi = 0;
 
 
-pcontrol_timer = timer('TimerFcn','c_rot_v = pcontrol(curr_pose(3));','Period',0.1,'ExecutionMode','fixedSpacing');
+pcontrol_timer = timer('TimerFcn','c_rot_v = pidcontrol(curr_pose(3));','Period',0.1,'ExecutionMode','fixedSpacing');
 start(pcontrol_timer)
 
-control_timer = timer('TimerFcn','myfunction(c_rot_v);','Period',10,'ExecutionMode','fixedSpacing');
+control_timer = timer('TimerFcn','closeloopcontrol(c_rot_v);','Period',10,'ExecutionMode','fixedSpacing');
 start(control_timer)
-
-% while true
-% 
-%     
-%     myfunction();
-%     pause(5);
-% end
-
 
 
 

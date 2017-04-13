@@ -1,4 +1,4 @@
-function myfunction(c_rot_v)
+function closeloopcontrol(c_rot_v)
     global flag
     global lin_vel
     global rot_vel
