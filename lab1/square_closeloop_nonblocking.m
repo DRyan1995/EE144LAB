@@ -52,12 +52,12 @@ start(plotting_timer)
 % therefore, in general (but perhaps not always), this approach to
 % commanding the robot's velocity is preferrable to using blocking calls
 
-global flag
+global flag % flag is used for the control, 0 means going straight, 1 means making a turn
 flag = 1;
-global dphi
-global istunning
-global prev_error
-global sum_error
+global dphi % desired_phi : the desired orientation
+global istunning % if the car is tunning the p control will be disabled
+global prev_error % previous error, used for D control
+global sum_error % sum of error used for I control
 
 prev_error = 0;
 sum_error = 0;
@@ -65,10 +65,11 @@ sum_error = 0;
 istunning = false;
 dphi = 0;
 
+%pid controller (see pidcontrol.m)
+pidcontrol_timer = timer('TimerFcn','c_rot_v = pidcontrol(curr_pose(3));','Period',0.1,'ExecutionMode','fixedSpacing');
+start(pidcontrol_timer)
 
-pcontrol_timer = timer('TimerFcn','c_rot_v = pidcontrol(curr_pose(3));','Period',0.1,'ExecutionMode','fixedSpacing');
-start(pcontrol_timer)
-
+%car controller (see closedloopcontrol.m)
 control_timer = timer('TimerFcn','closeloopcontrol(c_rot_v);','Period',10,'ExecutionMode','fixedSpacing');
 start(control_timer)
 
