@@ -5,8 +5,8 @@ function c_rot_v = pcontrol(cphi)
     global prev_error
     global sum_error
     kp = 0.8;
-    kd = 0.8;
-    ki = 0.01;
+    kd = 0;
+    ki = 0;
     
     cur_error = -wrapToPi((cphi - dphi));
     

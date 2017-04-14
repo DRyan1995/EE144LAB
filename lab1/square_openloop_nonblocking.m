@@ -55,6 +55,6 @@ start(plotting_timer)
 global flag
 flag = 1;
 
-control_timer = timer('TimerFcn','openloopcontrol();','Period',10,'ExecutionMode','fixedSpacing');
+control_timer = timer('TimerFcn','openloopcontrol();','Period',10,'ExecutionMode','fixedRate');
 start(control_timer)
 
