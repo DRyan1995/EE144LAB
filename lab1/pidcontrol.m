@@ -6,8 +6,8 @@ function c_rot_v = pidcontrol(cphi)
     global prev_error
     global sum_error
  
-    kp = 0.8; 
-    kd = 0.5;
+    kp = 3; 
+    kd = 0.8;
     ki = 0.01;
     
     cur_error = -wrapToPi((cphi - dphi)); % current error

@@ -30,8 +30,9 @@ start(odometry_timer)
 % these are the variables that are used to define the robot velocity
 
 global rot_vel
+global lin_vel
 
-lin_vel = 0.05;  % meters per second
+lin_vel = 0;  % meters per second
 rot_vel = 0;  % rad/second 
 
 % create a Matlab "timer" for continuoulsy sending velocity commands to the robot.
@@ -42,8 +43,8 @@ start(velocity_command_timer)
  
 
 %% We should experiment with two sets of waypoints... choose which one we want to use:
-waypoint_set = 2;  % 1 or 2
-global waypoints
+waypoint_set = 1;  % 1 or 2
+global waypoints %make it accessible in other functions
 if waypoint_set==1
 	
 	% we make the robot move on a square
@@ -63,7 +64,7 @@ end
 
 if waypoint_set==2
 	% a set of waypoints that create a more interesting trajectory
-	waypoints = [[0;0] [0;-1] [0.6;-1] [ 0.6;0]  [1.6;0]   [1;0]  [1;-1] [1.6;-1]  [2;-1]  [2;0] [2.6;0]  [2.6;-.5] [2;-.5] [2.6;-1]];
+	waypoints = [[0;0] [0;-1] [0.6;-1] [0.6;0]  [1.6;0]   [1;0]  [1;-1] [1.6;-1]  [2;-1]  [2;0] [2.6;0]  [2.6;-.5] [2;-.5] [2.6;-1]];
 	
 end
 
@@ -79,12 +80,13 @@ start(plotting_timer)
 % these coordinates are in the "world" coordinate frame.
 
 % the number of waypoints 
-global N_waypoints 
+global N_waypoints % the size of the waypoints
 N_waypoints = size(waypoints,2);
 
-global current_index
+global current_index % storing the current index of the target point
 current_index = 1;
 
+%initialize the timer for p controller
 p_control_timer = timer('TimerFcn','pControl()','Period',0.1,'ExecutionMode','fixedSpacing');
 start(p_control_timer)
 

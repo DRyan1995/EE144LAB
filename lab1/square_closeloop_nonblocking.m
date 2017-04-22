@@ -70,7 +70,7 @@ pidcontrol_timer = timer('TimerFcn','c_rot_v = pidcontrol(curr_pose(3));','Perio
 start(pidcontrol_timer)
 
 %car controller (see closedloopcontrol.m)
-control_timer = timer('TimerFcn','closeloopcontrol(c_rot_v);','Period',10,'ExecutionMode','fixedSpacing');
+control_timer = timer('TimerFcn','closeloopcontrol(c_rot_v);','Period',5,'ExecutionMode','fixedSpacing');
 start(control_timer)
 
 

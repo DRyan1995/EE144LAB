@@ -7,7 +7,7 @@ function closeloopcontrol(c_rot_v)
     
     if flag == 1
         istunning = false;
-        lin_vel = 0.5;
+        lin_vel = 1;
         rot_vel = c_rot_v; 
         flag = 0;
     else
@@ -18,7 +18,7 @@ function closeloopcontrol(c_rot_v)
         end
         disp(dphi); % for debugging usage
         lin_vel = 0;
-        rot_vel = pi/20;
+        rot_vel = pi/10;
         flag = 1;
     end
 end
