@@ -54,22 +54,22 @@ while 1
 	%% YOUR CODE HERE
 	
 	toc
-    greenImg = zeros(size(hsvImg(:,:,1)));
+    greenImg = zeros(size(hsvImg(:,:,1))); %declaring the greemImg 
     for i = 1:size(hsvImg,1)
         for j = 1:size(hsvImg,2)
-            if hsvImg(i,j,1)>(100/360) && hsvImg(i,j,1)<(140/360)
+            if hsvImg(i,j,1)>(100/360) && hsvImg(i,j,1)<(140/360) %putting threshold to identify green color
                 greenImg(i,j)=1;
             else
                 greenImg(i,j)=0;
             end
         end
     end
-    s = regionprops(greenImg, 'centroid')
-    kp =  0.0005;
-    if size(s,1) == 0
-        rot_vel = 0.2;
+    s = regionprops(greenImg, 'centroid') % using regionprops to get the centroid of the green ball
+    kp =  0.0005; % the Kp for P controller
+    if size(s,1) == 0 % in the case of no green ball in the image
+        rot_vel = 0.2; % making the robot rotating slowly to find the green ball
     else
-        rot_vel = kp * (-s.Centroid(1) + 320)
+        rot_vel = kp * (-s.Centroid(1) + 320) % if there is a green ball in camera, using P controller to control the rot_vel to make it in the center
     end
     
 end

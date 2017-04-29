@@ -54,17 +54,17 @@ while 1
     
 	%YOUR CODE HERE
 	
-    kpr = 0.0015;  % the Kp for rot_vel P controller to ensure the robot in the center of the camera
-    kpl = 0.00023;  % the Kp for lin_vel P controller to ensure 4000 pixels requirement
-    if size(mean_col) == 0 % in the case of no robot in sight
-        rot_vel = 0.4 % making the robot rotating slowly to find the target
+    kpr = 0.0015; 
+    kpl = 0.00023;
+    if size(mean_col) == 0
+        rot_vel = 0.4
     else
-        rot_vel = kpr*(320 - mean_col); % if there is a robot in sight, using P controller to make it in the center of the image
+        rot_vel = kpr*(320 - mean_col);
     end
-    if size(area) == 0 % in the case of no robot in signt
-        lin_vel = 0; % just hold the robot and just rotate it 
+    if size(area) == 0
+        lin_vel = 0;
     else
-        lin_vel = kpl * (4000 - area); % using P controller to make sure the 4000 pixel requirement 
+        lin_vel = kpl * (4000 - area);
     end    
 	% show the elapsed time for a loop
 	toc
