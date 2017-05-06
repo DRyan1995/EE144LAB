@@ -37,7 +37,7 @@ for i = 1:20
 	
 end
 
-k = 1; % K is used for the indexing of image storage
+k = 1;
 while 1
     rgbImg = getColorImage(tbot);
 	% display the image
@@ -64,7 +64,7 @@ while 1
     
     s = regionprops(greyImg, 'centroid') % using regionprops to get the centroid of the binary image
     area = regionprops(greyImg, 'area') % using regionprops to get the area of the binary image
-    kpr =  0.003; % the Kp for rot_vel
+    kpr =  0.003; % the Kp rotation velocity 
     if size(s,1) == 0 % in the case all pixels in the binary image are zeroes
         rot_vel = 0.2; % making the robot rotating slowly to find the target
     else
@@ -72,22 +72,15 @@ while 1
     end
     if size(area,1) == 0 % in the case all pixels in the binary image area zeroes
         rot_vel = 0.2 % we make it rotate to look for the target ball
-    else 
-        if area.Area(1) < 1000
-            % to avoid the effect of noise in the environment, we consider
-            % there is no target ball in the view of camera whenever there
-            % is too few ones in the binary image
-            rot_vel = 0.2
+    else if area.Area(1) < 1000 % to 
+            rot_vel = 0
         end
     end
-    kpl = 0.00002; % the Kp for lin_vel
+    kpl = 0.00002;
     if size(area,1) == 0 % in the case of no robot in signt
         lin_vel = 0; % just hold the robot and just rotate it 
     else if area.Area(1) < 5000
-            % to avoid the effect of noise in the environment, we just le t
-            % the robot hold whenever there is too few ones in the binary
-            % image
-            lin_vel = 0 
+            lin_vel = 0
         else
             lin_vel = kpl * (20000 - area.Area(1)); % using P controller to make sure the 4000 pixel requirement 
         end
