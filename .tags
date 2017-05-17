@@ -1,0 +1,18 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+closeloopcontrol	lab1/closeloopcontrol.m	/^function closeloopcontrol(c_rot_v)$/;"	f
+find_robot	lab3/find_robot.m	/^function [mean_col, area] = find_robot(rgbImg);$/;"	f
+get_pose_from_tbot_odometry	Lab4/get_pose_from_tbot_odometry.m	/^function  curr_pose = get_pose_from_tbot_odometry(tbot)$/;"	f
+get_pose_from_tbot_odometry	lab1/get_pose_from_tbot_odometry.m	/^function  curr_pose = get_pose_from_tbot_odometry(tbot)$/;"	f
+get_pose_from_tbot_odometry	lab2/get_pose_from_tbot_odometry.m	/^function  curr_pose = get_pose_from_tbot_odometry(tbot)$/;"	f
+move_robot	lab3/move_robot.m	/^function move_robot(image_count,bot,botjoints)$/;"	f
+openloopcontrol	lab1/openloopcontrol.m	/^function openloopcontrol()$/;"	f
+pControl	lab2/pControl.m	/^function pControl()$/;"	f
+pidcontrol	lab1/pidcontrol.m	/^function c_rot_v = pidcontrol(cphi)$/;"	f
+plot_trajectory	Lab4/plot_trajectory.m	/^function plot_trajectory(robot_poses, waypoints)$/;"	f
+plot_trajectory	lab1/plot_trajectory.m	/^function plot_trajectory(robot_poses)$/;"	f
+plot_trajectory	lab2/plot_trajectory.m	/^function plot_trajectory(robot_poses, waypoints)$/;"	f

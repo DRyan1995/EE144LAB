@@ -3,7 +3,7 @@ close all
  
 % initialize
 rosshutdown % to 'close' any previous sessions 
-rosinit('192.168.2.128'); % initialize Matlab ROS node
+rosinit('192.168.1.79'); % initialize Matlab ROS node
 tbot = turtlebot  % the data structure that allows access to the turtlebot and its sensors
     
 % these are the variables that are used to define the robot velocity
