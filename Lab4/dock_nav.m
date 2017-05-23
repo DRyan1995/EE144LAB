@@ -66,7 +66,11 @@ while 1
 
     centroid_green = regionprops(greenImg, 'centroid'); % using regionprops to get the centroid of the binary image
     area_green = regionprops(greenImg, 'area'); % using regionprops to get the area of the binary image
+    centroid_red = regionprops(redImg, 'centroid'); % using regionprops to get the centroid of the binary image
+    area_red = regionprops(redImg, 'area'); % using regionprops to get the area of the binary image
 
+		redX = 0;
+		redArea = 1;
     greenX = 0; % store the X of the centroid of the green cylinder
     greenArea = 1; % store the area of the green cylinder
     if size(centroid_green,1) == 0
@@ -75,12 +79,18 @@ while 1
         greenX = centroid_green.Centroid(1);
         greenArea = area_green.Area(1);
     end
+    if size(centroid_red,1) == 0
+        disp('none red')
+    else
+        greenX = centroid_red.Centroid(1);
+        greenArea = area_red.Area(1);
+    end
 
 		%parameter initialization
 		THRESHOLD = 30;
 		kpl = 0.00003;
 		kpr = 0.003;
-		lin_current_error = 23000 - greenArea;
+		lin_current_error = 10000 - greenArea;
 		if MOD == 0 % making sure the area of the cylinder is 23000
 					if abs(lin_current_error) >=  THRESHOLD && greenArea >= 800 % when the greenArea is too small, we just consider there is no target in the camera view
 							lin_current_error = 23000 - greenArea;
@@ -89,7 +99,7 @@ while 1
 							rot_vel = kpr * rot_current_error
 					else
 							if greenArea >= 800
-									MOD = 1 % MOD 1 is for final approach -- just heading for the centroid of the cylinder
+									MOD = 0 % MOD 1 is for final approach -- just heading for the centroid of the cylinder
 									posx = curr_pose(1) % recording the current X for future calculation
 									posy = curr_pose(2) % recodring the current Y for future calculation
 									postheta = curr_pose(3) % recording the current theta for future calculation
