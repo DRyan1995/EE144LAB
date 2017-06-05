@@ -140,7 +140,7 @@ while 1
 								end
 						end
 				else
-						 	if MOD == 2 % MOD 1 can be considered a waypoint following approach
+						 	if MOD == 2
 								  R = 0.64;
 									k_p = 3;
 									cx = posx + R * cos(postheta)
@@ -148,8 +148,10 @@ while 1
 
 									alpha = atan2((posy - cy)/R, (posx - cx)/R)
 									beta = postheta - theta1
+									targetX = cx+R*cos(alpha - 2 * beta);
+									targetY = cy+R*sin(alpha - 2 * beta);
 
-									waypoints = [cx+R*cos(alpha - 2 * beta);cy+R*sin(alpha - 2 * beta)] % we calculate the target point which is also the centroid of the bottom circle of the cylinder
+									waypoints = [targetX/2;targetY/2] 
 								  if norm(curr_pose(1:2)- [cx+R*cos(alpha - 2 * beta);cy+R*sin(alpha - 2 * beta)])> 0.02 % the allowed error for this PID control is 2 cm
 									R = [cos(curr_pose(3)) -sin(curr_pose(3)) 0 ;
 									     sin(curr_pose(3)) cos(curr_pose(3))  0
